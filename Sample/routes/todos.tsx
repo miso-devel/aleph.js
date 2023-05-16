@@ -1,4 +1,4 @@
-import type { FormEvent } from "react";
+import type { FormEvent } from "https://esm.sh/v113/react@18.2.0";
 import { Head, useData } from "aleph/react";
 
 type Todo = {
@@ -10,7 +10,9 @@ type Todo = {
 const store = {
   todos: JSON.parse(window.localStorage?.getItem("todos") || "[]") as Todo[],
   save() {
-    localStorage?.setItem("todos", JSON.stringify(this.todos));
+    if (typeof window !== "undefined") {
+      localStorage?.setItem("todos", JSON.stringify(this.todos));
+    }
   },
 };
 
