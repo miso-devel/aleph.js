@@ -8,10 +8,10 @@ type Todo = {
 };
 
 const store = {
-  todos: JSON.parse(localStorage?.getItem("todos") || "[]") as Todo[],
+  todos: JSON.parse(window.localStorage?.getItem("todos") || "[]") as Todo[],
   save() {
     console.log("save!!", localStorage);
-    localStorage?.setItem("todos", JSON.stringify(this.todos));
+    window.localStorage?.setItem("todos", JSON.stringify(this.todos));
   },
 };
 
@@ -70,7 +70,6 @@ export default function Todos() {
       form.reset();
     }
   };
-  console.log("aaa");
 
   return (
     <div className="w-9/10 max-w-150 mx-auto mt-15">
