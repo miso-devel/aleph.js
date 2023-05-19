@@ -8,15 +8,15 @@ type Todo = {
 };
 
 const store = {
-  todos: JSON.parse(window.localStorage?.getItem("todos") || "[]") as Todo[],
+  todos: JSON.parse(localStorage?.getItem("todos") || "[]") as Todo[],
   save() {
-    if (typeof window !== "undefined") {
-      localStorage?.setItem("todos", JSON.stringify(this.todos));
-    }
+    console.log("save!!", localStorage);
+    localStorage?.setItem("todos", JSON.stringify(this.todos));
   },
 };
 
 export function data() {
+  console.log("export function data");
   return Response.json(store);
 }
 
@@ -26,6 +26,8 @@ export async function mutation(req: Request): Promise<Response> {
     case "PUT": {
       store.todos.push({ id: Date.now(), message, completed: false });
       store.save();
+      console.log("aa");
+      console.log(store);
       break;
     }
     case "PATCH": {
@@ -46,6 +48,7 @@ export async function mutation(req: Request): Promise<Response> {
 
 export default function Todos() {
   const { data: { todos }, isMutating, mutation } = useData<{ todos: Todo[] }>();
+  console.log("todos!!", todos);
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -67,6 +70,7 @@ export default function Todos() {
       form.reset();
     }
   };
+  console.log("aaa");
 
   return (
     <div className="w-9/10 max-w-150 mx-auto mt-15">
