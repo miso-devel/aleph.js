@@ -14,7 +14,6 @@ const store = {
     window.localStorage?.setItem("todos", JSON.stringify(this.todos));
   },
 };
-
 export function data() {
   console.log("export function data");
   return Response.json(store);

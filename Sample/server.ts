@@ -8,7 +8,7 @@ import modules from "./routes/_export.ts";
 serve({
   plugins: [
     denoDeploy({ modules }),
-    react({ ssr: true }),
+    react({ ssr: false }),
     unocss(config),
   ],
 });
